@@ -1,3 +1,3 @@
-# ASL
+# Change Note
 
-## Week 1 assignment on assignments/docker
+- updated ALS to ASL after video was made.
