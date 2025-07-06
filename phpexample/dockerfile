@@ -1,0 +1,4 @@
+FROM php:latest
+COPY . /usr/src/myphpapp
+WORKDIR /usr/src/myphpapp
+CMD ["php", "./hello.php"]

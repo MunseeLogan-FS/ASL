@@ -1,0 +1,4 @@
+FROM node:latest
+COPY . /usr/src/mynodeapp
+WORKDIR /usr/src/mynodeapp
+CMD ["node", "./hello.js"]

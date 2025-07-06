@@ -1,0 +1,7 @@
+services:
+  dev:
+    image: "rust:latest"
+    volumes:
+      - ./src:/usr/src/myapp
+    environment:
+      - USER=root
