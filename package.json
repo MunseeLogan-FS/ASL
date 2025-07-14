@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@jworkman-fs/asl": "^1.2.43",
+    "axios": "^1.10.0",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "jest": "^30.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "name": "my-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
