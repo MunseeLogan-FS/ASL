@@ -5,15 +5,32 @@ const index = async (req, res) => {
   // Respond with an array and 2xx status code
   const planets = await Planet.findAll();
   const stars = await Promise.all(planets.map((planet) => planet.getStar()));
-  res.status(200).json({ planets, stars });
+  if (req.headers.accept && req.headers.accept.includes("application/json")) {
+    res.status(200).json({ planets, stars });
+  } else {
+    res.render("../views/planet/index.html.twig", {
+      title: "All Planets",
+      message: "Welcome to the Planets",
+      planets: planets,
+    });
+  }
 };
 
 // Show resource
 const show = async (req, res) => {
   // Respond with a single object and 2xx code
   const planet = await Planet.findByPk(req.params.id);
-  const star = await planet.getStar();
-  res.status(200).json({ planet, star });
+  const stars = await planet.getStar();
+  if (req.headers.accept && req.headers.accept.includes("application/json")) {
+    return res.status(200).json({ planet, stars });
+  } else {
+    return res.render("../views/planet/show.html.twig", {
+      title: planet.name,
+      message: `Welcome to the ${planet.name} Detail page!`,
+      planet: planet,
+      star: stars,
+    });
+  }
 };
 
 // Create a new resource

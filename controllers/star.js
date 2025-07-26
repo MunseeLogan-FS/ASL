@@ -5,7 +5,15 @@ const index = async (req, res) => {
   // Respond with an array and 2xx status code
   const stars = await Star.findAll();
   const galaxies = await Promise.all(stars.map((star) => star.getGalaxy()));
-  res.status(200).json({ stars, galaxies });
+  if (req.headers.accept && req.headers.accept.includes("application/json")) {
+    res.status(200).json({ stars, galaxies });
+  } else {
+    res.render("../views/star/index.html.twig", {
+      title: "All Stars",
+      message: "Welcome to the Stars",
+      stars: stars,
+    });
+  }
 };
 
 // Show resource
@@ -13,7 +21,16 @@ const show = async (req, res) => {
   // Respond with a single object and 2xx code
   const star = await Star.findByPk(req.params.id);
   const galaxy = await star.getGalaxy();
-  res.status(200).json({ star, galaxy });
+  if (req.headers.accept && req.headers.accept.includes("application/json")) {
+    return res.status(200).json({ star, galaxy });
+  } else {
+    return res.render("../views/star/show.html.twig", {
+      title: star.name,
+      message: `Welcome to the ${star.name} Detail page!`,
+      star: star,
+      galaxy: galaxy,
+    });
+  }
 };
 
 // Create a new resource

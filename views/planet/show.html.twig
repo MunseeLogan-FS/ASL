@@ -1,0 +1,29 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <p>
+        Name: {{ planet.name }} <br> 
+        Description: {{ planet.description }} <br>
+        Size: {{ planet.size | number_format }} <br> 
+        Stars: 
+        {% if planet.stars %}
+            <ul>
+                {% for star in planet.stars %}
+                    <li><a href="/stars/{{ star.id }}">{{ star.name }} - {{ star.description }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No stars associated with this planet.
+        {% endif %}
+        <br>
+        starId: {{ planet.stars.name }} <br>
+    </p>
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="/public/app.js"></script> #}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <p>
+        Name: {{ galaxy.name }} <br> 
+        Description: {{ galaxy.description }} <br>
+        Size: {{ galaxy.size | number_format }} <br> 
+    </p>
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="/public/app.js"></script> #}
+{% endblock %}
