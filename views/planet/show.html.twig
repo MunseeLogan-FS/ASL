@@ -10,18 +10,16 @@
         Description: {{ planet.description }} <br>
         Size: {{ planet.size | number_format }} <br> 
         Stars: 
-        {% if planet.stars %}
-            <ul>
-                {% for star in planet.stars %}
-                    <li><a href="/stars/{{ star.id }}">{{ star.name }} - {{ star.description }}</a></li>
-                {% endfor %}
-            </ul>
+        {% if stars %}
+           <a href="/stars/{{ stars.id }}">{{ stars.name }}</a>
         {% else %}
             No stars associated with this planet.
         {% endif %}
-        <br>
-        starId: {{ planet.stars.name }} <br>
+        
     </p>
+        <a href="/planets/{{ planet.id }}/edit">Edit Planet</a>
+        <a href="/planets/{{ planet.id }}/delete">Delete Planet</a>
+
 {% endblock %}
 
 {% block javascripts %}

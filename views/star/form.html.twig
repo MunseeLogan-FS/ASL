@@ -1,0 +1,31 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <p>
+
+    {% if star.id %}
+    <form action="/stars/{{ star.id }}" method="POST">
+    <input type="hidden" name="id" value="{{ star.id }}">
+    {% else %}
+    <form action="/stars" method="POST">
+    {% endif %}
+    <label for="name">Star Name:</label>
+  <input type="text" name="name" placeholder="Star Name" value="{{ star.name ? star.name : '' }}" required>
+  <label for="description">Star Description:</label>
+  <textarea name="description" placeholder="Star Description" required>{{ star.description ? star.description : '' }}</textarea>
+  <label for="size">Star Size:</label>
+  <input type="text" name="size" placeholder="Star Size" value="{{ star.size ? star.size : '' }}" required>
+  <label for="galaxyId">Galaxy ID:</label>
+  <input type="text" name="galaxyId" placeholder="Galaxy ID" value="{{ star.galaxyId ? star.galaxyId : '' }}">
+  <button type="submit">{{ star.id ? 'Update' : 'Create' }} Star</button>
+</form>
+    </p>
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="/public/app.js"></script> #}
+{% endblock %}

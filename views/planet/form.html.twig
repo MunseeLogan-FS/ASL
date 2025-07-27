@@ -1,0 +1,31 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <p>
+
+    {% if planet.id %}
+    <form action="/planets/{{ planet.id }}" method="POST">
+    <input type="hidden" name="id" value="{{ planet.id }}">
+    {% else %}
+    <form action="/planets" method="POST">
+    {% endif %}
+    <label for="name">Planet Name:</label>
+  <input type="text" name="name" placeholder="Planet Name" value="{{ planet.name ? planet.name : '' }}" required>
+  <label for="description">Description: </label>
+  <textarea name="description" placeholder="Planet Description" required>{{ planet.description ? planet.description : '' }}</textarea>
+  <label for="size">Planet Size: </label>
+  <input type="text" name="size" placeholder="Planet Size" value="{{ planet.size}}" required>
+  <label for="starId"> Star ID: </label>
+<input type="text" name="starId" placeholder="Star Id" value="{{stars.id}}">
+  <button type="submit">{{ planet.id ? 'Update' : 'Create' }} Planet</button>
+</form>
+    </p>
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="/public/app.js"></script> #}
+{% endblock %}

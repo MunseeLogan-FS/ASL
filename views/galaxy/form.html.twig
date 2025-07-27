@@ -1,0 +1,27 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    {# <p>{{galaxy.name}}</p> #}
+    <p>
+    {% if galaxy.id %}
+        <form action="/galaxies/{{ galaxy.id }}" method="POST">
+        <input type="hidden" name="id" value="{{ galaxy.id }}">
+    {% else %}
+        <form action="/galaxies" method="POST">
+    {% endif %}
+
+  <input type="text" name="name" placeholder="Galaxy Name" value="{{ galaxy.name ? galaxy.name : '' }}" required>
+  <textarea name="description" placeholder="Galaxy Description" required>{{ galaxy.description ? galaxy.description : '' }}</textarea>
+  <input type="text" name="size" placeholder="Galaxy Size" value="{{ galaxy.size ? galaxy.size : '' }}" required>
+  <button type="submit">{{ galaxy.id ? 'Update' : 'Create' }} Galaxy</button>
+</form>
+    </p>
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="/public/app.js"></script> #}
+{% endblock %}

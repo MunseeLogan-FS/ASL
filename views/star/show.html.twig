@@ -9,8 +9,11 @@
         Name: {{ star.name }} <br> 
         Description: {{ star.description }} <br>
         Size: {{ star.size | number_format }} <br> 
-        Galaxy: {{ galaxy.name }} <br>
+        Galaxy: <a href="/galaxies/{{ galaxy.id }}">{{ galaxy.name }}</a> <br>
     </p>
+        <a href="/stars/{{ star.id }}/edit">Edit Star</a>
+        <a href="/stars/{{ star.id }}/delete">Delete Star</a>
+
 {% endblock %}
 
 {% block javascripts %}

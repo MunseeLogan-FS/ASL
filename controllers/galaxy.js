@@ -29,12 +29,35 @@ const show = async (req, res) => {
     });
   }
 };
+// get /galaxies/new
+// get /galaxies/:id/edit
+const form = async (req, res) => {
+  // Render form for creating a new galaxy
+  console.log("This is the id", req.params.id);
+  if (req.params.id) {
+    const galaxy = await Galaxy.findByPk(req.params.id);
+    if (!galaxy) {
+      return res.status(404).render("../views/galaxy/form.html.twig", {
+        message: "Galaxy not found",
+      });
+    }
+    return res.render("../views/galaxy/form.html.twig", {
+      title: `Edit ${galaxy.name}`,
+      message: `Edit details for ${galaxy.name}`,
+      galaxy: galaxy,
+    });
+  }
+  return res.render("../views/galaxy/form.html.twig", {
+    title: "Create Galaxy",
+    message: "Fill in the details to create a new galaxy",
+  });
+};
 
 // Create a new resource
 const create = async (req, res) => {
   // Create a new galaxy
   const galaxy = await Galaxy.create(req.body);
-  res.status(201).json(galaxy);
+  res.redirect(`/galaxies/${galaxy.id}`);
 };
 
 // Update an existing resource
@@ -43,7 +66,7 @@ const update = async (req, res) => {
   const galaxy = await Galaxy.update(req.body, {
     where: { id: req.params.id },
   });
-  res.status(200).json(galaxy);
+  res.redirect(`/galaxies/${req.params.id}`);
 };
 
 // Remove a single resource
@@ -52,8 +75,8 @@ const remove = async (req, res) => {
   const galaxy = await Galaxy.destroy({
     where: { id: req.params.id },
   });
-  res.status(200).json({ success: true });
+  res.redirect(`/galaxies`);
 };
 
 // Export all controller actions
-module.exports = { index, show, create, update, remove };
+module.exports = { index, show, create, update, remove, form };

@@ -33,11 +33,31 @@ const show = async (req, res) => {
   }
 };
 
+const form = async (req, res) => {
+  // Render form for creating or editing a star
+  if (req.params.id) {
+    const star = await Star.findByPk(req.params.id);
+    if (!star) {
+      return res.status(404).send({ error: "Star not found" });
+    }
+    return res.render("../views/star/form.html.twig", {
+      title: `Edit ${star.name}`,
+      message: `Edit details for ${star.name}`,
+      star: star,
+    });
+  } else {
+    return res.render("../views/star/form.html.twig", {
+      title: "Create Star",
+      message: "Fill in the details to create a new star",
+    });
+  }
+};
+
 // Create a new resource
 const create = async (req, res) => {
   // Create a new star
   const star = await Star.create(req.body);
-  res.status(201).json(star);
+  res.redirect(`/stars/${star.id}`);
 };
 
 // Update an existing resource
@@ -46,7 +66,7 @@ const update = async (req, res) => {
   const star = await Star.update(req.body, {
     where: { id: req.params.id },
   });
-  res.status(200).json(star);
+  res.redirect(`/stars/${req.params.id}`);
 };
 
 // Remove a single resource
@@ -55,7 +75,7 @@ const remove = async (req, res) => {
   const star = await Star.destroy({
     where: { id: req.params.id },
   });
-  res.status(200).json({ success: true });
+  res.redirect(`/stars`);
 };
 // Export all controller actions
-module.exports = { index, show, create, update, remove };
+module.exports = { index, show, create, update, remove, form };
