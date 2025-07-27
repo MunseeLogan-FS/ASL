@@ -9,7 +9,7 @@ const path = require(`path`);
 app.set("view engine", "twig");
 
 app.set("views", path.join(__dirname, "/views"));
-
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(bodyParser.urlencoded());
 
 // Load in our RESTful routers

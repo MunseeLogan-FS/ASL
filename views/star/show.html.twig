@@ -11,8 +11,10 @@
         Size: {{ star.size | number_format }} <br> 
         Galaxy: <a href="/galaxies/{{ galaxy.id }}">{{ galaxy.name }}</a> <br>
     </p>
-        <a href="/stars/{{ star.id }}/edit">Edit Star</a>
-        <a href="/stars/{{ star.id }}/delete">Delete Star</a>
+    <div>
+        <a class="button" href="/stars/{{ star.id }}/edit">Edit Star</a>
+        <a class="button" href="/stars/{{ star.id }}/delete">Delete Star</a>
+    </div>
 
 {% endblock %}
 

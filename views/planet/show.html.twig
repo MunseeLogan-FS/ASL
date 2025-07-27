@@ -17,8 +17,10 @@
         {% endif %}
         
     </p>
-        <a href="/planets/{{ planet.id }}/edit">Edit Planet</a>
-        <a href="/planets/{{ planet.id }}/delete">Delete Planet</a>
+    <div>
+        <a class="button" href="/planets/{{ planet.id }}/edit">Edit Planet</a>
+        <a class="button" href="/planets/{{ planet.id }}/delete">Delete Planet</a>
+    </div>
 
 {% endblock %}
 

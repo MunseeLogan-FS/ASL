@@ -5,14 +5,16 @@
     <title>{% block title %}My Website{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="../public/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
     {% endblock %}
 </head>
 <header>
     {% include "partials/_header.html.twig" %}
 </header>
 <body>
+    <main>
     {% block body %}{% endblock %}
+    </main>
     {% block javascripts %}
     <script src="/assets/app.js"></script>
     {% endblock %}

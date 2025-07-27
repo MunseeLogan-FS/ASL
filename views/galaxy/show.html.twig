@@ -10,9 +10,11 @@
         Description: {{ galaxy.description }} <br>
         Size: {{ galaxy.size | number_format }} <br> 
     </p>
-    <a href="/galaxies/{{ galaxy.id }}/edit">Edit Galaxy</a>
-  <a href="/galaxies/{{galaxy.id}}/delete">Delete Galaxy</a>
-    
+    <div>
+    <a class="button" href="/galaxies/{{ galaxy.id }}/edit">Edit Galaxy</a>
+  <a class="button" href="/galaxies/{{galaxy.id}}/delete">Delete Galaxy</a>
+  </div>
+
 
 {% endblock %}
 
